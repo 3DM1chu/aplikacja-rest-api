@@ -3,9 +3,12 @@ package com.pbs.aplikacja.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.aop.target.LazyInitTargetSource;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="projekt") //TODO Indeksować kolumny, które są najczęściej wykorzystywane do wyszukiwania projektów
@@ -24,6 +27,9 @@ public class Projekt {
     @Column(name = "dataczas_utworzenia", nullable = false, updatable = false)
     private LocalDateTime dataCzasUtworzenia;
 
+    @OneToMany(mappedBy = "projekt")
+    private List<Zadanie> zadania;
+
     @UpdateTimestamp
     @Column(name = "dataczas_modyfikacji", nullable = false)
     private LocalDateTime data_oddania;
@@ -31,6 +37,13 @@ public class Projekt {
     @UpdateTimestamp
     @Column(name = "dataczas_modyfikacji", nullable = false)
     private LocalDateTime dataCzasModyfikacji;
+
+    @ManyToMany
+    @JoinTable(name = "projekt_student",
+            joinColumns = {@JoinColumn(name="projekt_id")},
+            inverseJoinColumns = {@JoinColumn(name="student_id")})
+    private Set<Student> studenci;
+
 
     public Integer getProjektId() {
         return projektId;
@@ -80,9 +93,20 @@ public class Projekt {
         this.dataCzasModyfikacji = dataCzasModyfikacji;
     }
 
-    /*TODO Uzupełnij kod o zmienne reprezentujące pozostałe pola tabeli projekt (patrz rys. 3.1),
-. następnie wygeneruj dla nich tzw. akcesory i mutatory (Source -> Generate Getters and Setters),
-. ponadto dodaj pusty konstruktor oraz konstruktor ze zmiennymi nazwa i opis.
-*/
+    public List<Zadanie> getZadania() {
+        return zadania;
+    }
+
+    public void setZadania(List<Zadanie> zadania) {
+        this.zadania = zadania;
+    }
+
+    public Set<Student> getStudenci() {
+        return studenci;
+    }
+
+    public void setStudenci(Set<Student> studenci) {
+        this.studenci = studenci;
+    }
 }
 

@@ -2,6 +2,8 @@ package com.pbs.aplikacja.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity //Indeksujemy kolumny, które są najczęściej wykorzystywane do wyszukiwania studentów
 @Table(name = "student",
         indexes = { @Index(name = "idx_nazwisko", columnList = "nazwisko", unique = false),
@@ -17,6 +19,9 @@ public class Student {
     private String indexNumber;
     private String email;
     private Boolean isLocal;
+
+    @ManyToMany(mappedBy = "studenci")
+    private Set<Projekt> projekty;
 
     public Student() {
     }
@@ -81,5 +86,13 @@ public class Student {
 
     public void setLocal(Boolean local) {
         isLocal = local;
+    }
+
+    public Set<Projekt> getProjekty() {
+        return projekty;
+    }
+
+    public void setProjekty(Set<Projekt> projekty) {
+        this.projekty = projekty;
     }
 }
