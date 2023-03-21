@@ -39,8 +39,7 @@ public class ProjektServiceImpl implements ProjektService {
     }
     @Override
     public Projekt setProjekt(Projekt projekt) {
-        //TODO
-        return null;
+        return projektRepository.save(projekt);
     }
     @Override
     public Page<Projekt> getProjekty(Pageable pageable) {
@@ -49,8 +48,7 @@ public class ProjektServiceImpl implements ProjektService {
 
     @Override
     public Page<Projekt> searchByNazwa(String nazwa, Pageable pageable) {
-        //TODO
-        return null;
+        return projektRepository.findByNazwaContainingIgnoreCase(nazwa, pageable);
     }
 
     @Override
