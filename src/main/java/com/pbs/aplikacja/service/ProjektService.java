@@ -1,4 +1,5 @@
 package com.pbs.aplikacja.service;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,4 +10,5 @@ public interface ProjektService {
     void deleteProjekt(Integer projektId);
     Page<Projekt> getProjekty(Pageable pageable);
     Page<Projekt> searchByNazwa(String nazwa, Pageable pageable);
+    List<Projekt> getProjekty();
 }

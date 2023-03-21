@@ -5,6 +5,7 @@ import com.pbs.aplikacja.service.ProjektService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 public class ProjektRestController {
 
@@ -58,8 +60,10 @@ public class ProjektRestController {
     }
     //Przykład żądania wywołującego metodę: http://localhost:8080/api/projekty?page=0&size=10&sort=nazwa,desc
     @GetMapping(value = "/projekty")
-    Page<Projekt> getProjekty(Pageable pageable) { // @RequestHeader HttpHeaders headers – jeżeli potrzebny
-        return projektService.getProjekty(pageable); // byłby nagłówek, wystarczy dodać drugą zmienną z adnotacją
+    List<Projekt> getProjekty() {
+        // @RequestHeader HttpHeaders headers – jeżeli potrzebny
+        // byłby nagłówek, wystarczy dodać drugą zmienną z adnotacją
+        return projektService.getProjekty(PageRequest.of(0, 100)).getContent();
     }
 
     // Przykład żądania wywołującego metodę: GET http://localhost:8080/api/projekty?nazwa=webowa

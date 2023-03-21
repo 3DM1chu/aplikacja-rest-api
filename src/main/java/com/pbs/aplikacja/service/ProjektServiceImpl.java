@@ -1,4 +1,5 @@
 package com.pbs.aplikacja.service;
+import java.util.List;
 import java.util.Optional;
 
 import com.pbs.aplikacja.model.Zadanie;
@@ -6,6 +7,7 @@ import com.pbs.aplikacja.repository.ZadanieRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.pbs.aplikacja.model.Projekt;
@@ -42,13 +44,17 @@ public class ProjektServiceImpl implements ProjektService {
     }
     @Override
     public Page<Projekt> getProjekty(Pageable pageable) {
-        //TODO
-        return null;
+        return projektRepository.findAll(pageable);
     }
 
     @Override
     public Page<Projekt> searchByNazwa(String nazwa, Pageable pageable) {
         //TODO
         return null;
+    }
+
+    @Override
+    public List<Projekt> getProjekty() {
+        return projektRepository.findAll();
     }
 }
