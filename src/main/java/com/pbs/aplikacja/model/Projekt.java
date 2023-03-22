@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +31,7 @@ public class Projekt {
 
     @UpdateTimestamp
     @Column(name = "dataczas_oddania", nullable = false)
-    private LocalDateTime data_oddania;
+    private LocalDate data_oddania;
 
     @UpdateTimestamp
     @Column(name = "dataczas_modyfikacji", nullable = false)
@@ -75,11 +76,11 @@ public class Projekt {
         this.dataCzasUtworzenia = dataCzasUtworzenia;
     }
 
-    public LocalDateTime getData_oddania() {
+    public LocalDate getData_oddania() {
         return data_oddania;
     }
 
-    public void setData_oddania(LocalDateTime data_oddania) {
+    public void setData_oddania(LocalDate data_oddania) {
         this.data_oddania = data_oddania;
     }
 
@@ -105,6 +106,14 @@ public class Projekt {
 
     public void setStudenci(Set<Student> studenci) {
         this.studenci = studenci;
+    }
+
+    public Projekt(Integer id, String nazwa, String opis, LocalDateTime dataRozpoczecia, LocalDate dataOddania){
+        setProjektId(id);
+        setNazwa(nazwa);
+        setOpis(opis);
+        setDataCzasUtworzenia(dataRozpoczecia);
+        setData_oddania(dataOddania);
     }
 }
 

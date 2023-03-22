@@ -15,6 +15,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@RestController // przez kontener Springa REST-owy kontroler obsługujący sieciowe żądania
+@RequestMapping("/api")
 public class ProjektRestController {
 
     private ProjektService projektService;
