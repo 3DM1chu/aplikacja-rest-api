@@ -1,8 +1,10 @@
 package com.pbs.aplikacja.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name="projekt") //TODO Indeksować kolumny, które są najczęściej wykorzystywane do wyszukiwania projektów
 public class Projekt {
     @Id
@@ -24,6 +27,7 @@ public class Projekt {
 
     @CreationTimestamp
     @Column(name = "dataczas_utworzenia", nullable = false, updatable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private LocalDateTime dataCzasUtworzenia;
 
     @OneToMany(mappedBy = "projekt")
@@ -31,10 +35,12 @@ public class Projekt {
 
     @UpdateTimestamp
     @Column(name = "dataczas_oddania", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data_oddania;
 
     @UpdateTimestamp
     @Column(name = "dataczas_modyfikacji", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private LocalDateTime dataCzasModyfikacji;
 
     @ManyToMany
