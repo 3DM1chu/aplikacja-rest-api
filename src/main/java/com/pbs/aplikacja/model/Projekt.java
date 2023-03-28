@@ -121,5 +121,8 @@ public class Projekt {
         setDataCzasUtworzenia(dataRozpoczecia);
         setData_oddania(dataOddania);
     }
+    public Projekt(){
+
+    }
 }
 
