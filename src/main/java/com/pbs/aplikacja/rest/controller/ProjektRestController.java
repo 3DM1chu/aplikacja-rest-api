@@ -26,23 +26,10 @@ public class ProjektRestController {
         this.projektService = projektService;
     }
 
-    // PRZED KAŻDĄ Z PONIŻSZYCH METOD JEST UMIESZCZONA ADNOTACJA (@GetMapping, PostMapping, ... ), KTÓRA OKREŚLA
-    // RODZAJ METODY HTTP, A TAKŻE ADRES I PARAMETRY ŻĄDANIA
-    //Przykład żądania wywołującego metodę: GET http://localhost:8080/api/projekty/1
     @GetMapping("/projekty/{projektId}")
     ResponseEntity<Projekt> getProjekt(@PathVariable Integer projektId) {// @PathVariable oznacza, że wartość
         return ResponseEntity.of(projektService.getProjekt(projektId)); // parametru przekazywana jest w ścieżce
     }
-    // @Valid włącza automatyczną walidację na podstawie adnotacji zawartych
-    // w modelu np. NotNull, Size, NotEmpty itd. (z jakarta.validation.constraints.*)
-    @PostMapping(path = "/projekty")
-    ResponseEntity<Void> createProjekt(@Valid @RequestBody Projekt projekt) {// @RequestBody oznacza, że dane
-        // projektu (w formacie JSON) są
-        Projekt createdProjekt = projektService.setProjekt(projekt); // przekazywane w ciele żądania
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest() // link wskazujący utworzony projekt
-                .path("/{projektId}").buildAndExpand(createdProjekt.getProjektId()).toUri();
-        return ResponseEntity.created(location).build(); // zwracany jest kod odpowiedzi 201 - Created
-    } // z linkiem location w nagłówku
     @PutMapping("/projekty/{projektId}")
     public ResponseEntity<Void> updateProjekt(@Valid @RequestBody Projekt projekt,
                                               @PathVariable Integer projektId) {

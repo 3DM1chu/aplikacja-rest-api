@@ -9,14 +9,14 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class SecurityConfig {
-    /*
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .httpBasic();
         return http.build();
-    }*/
+    }
     @Bean // zwrócony, natomiast adnotacja @Autowired użyta w innej klasie spowoduje jego wstrzyknięcie
     RestTemplate customRestTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder.basicAuthentication("admin", "admin").build();
