@@ -109,10 +109,11 @@ public class ProjektServiceImpl implements ProjektService {
         return serverUrl + getResourcePath(id);
     }
 
+    @Autowired
     private ProjektRepository projektRepository;
+    @Autowired
     private ZadanieRepository zadanieRepository;
 
-    @Autowired // w tej wersji konstruktora Spring wstrzyknie dwa repozytoria
     public ProjektServiceImpl(ProjektRepository projektRepository, ZadanieRepository zadanieRepo) {
         this.projektRepository = projektRepository;
         this.zadanieRepository = zadanieRepo;
