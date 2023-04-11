@@ -52,7 +52,7 @@ public class ProjektRestController {
     List<Projekt> getProjekty() {
         // @RequestHeader HttpHeaders headers – jeżeli potrzebny
         // byłby nagłówek, wystarczy dodać drugą zmienną z adnotacją
-        return projektService.getProjekty(PageRequest.of(0, 100)).getContent();
+        return projektService.getProjekty(PageRequest.of(1, 100)).getContent();
     }
 
     // Przykład żądania wywołującego metodę: GET http://localhost:8080/api/projekty?nazwa=webowa

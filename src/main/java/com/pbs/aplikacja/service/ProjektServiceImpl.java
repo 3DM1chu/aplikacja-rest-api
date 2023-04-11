@@ -23,6 +23,16 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ProjektServiceImpl implements ProjektService {
 
+    @Autowired
+    private ProjektRepository projektRepository;
+    @Autowired
+    private ZadanieRepository zadanieRepository;
+
+    public ProjektServiceImpl(ProjektRepository projektRepository, ZadanieRepository zadanieRepo) {
+        this.projektRepository = projektRepository;
+        this.zadanieRepository = zadanieRepo;
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(ProjektServiceImpl.class);
     @Value("${rest.server.url}") // adres serwera jest wstrzykiwany przez Springa, a jego wartość
     private String serverUrl;
@@ -76,9 +86,11 @@ public class ProjektServiceImpl implements ProjektService {
     }
     @Override
     public Page<Projekt> getProjekty(Pageable pageable) {
-        URI url = ServiceUtil.getURI(serverUrl, getResourcePath(), pageable);
-        logger.info("REQUEST -> GET {}", url);
-        return getPage(url, restTemplate);
+//        URI url = ServiceUtil.getURI(serverUrl, getResourcePath(), pageable);
+//        logger.info("REQUEST -> GET {}", url);
+//        return getPage(url, restTemplate);
+        return projektRepository.findAll(pageable);//asd
+
     }
     @Override
     public Page<Projekt> searchByNazwa(String nazwa, Pageable pageable) {
@@ -109,15 +121,7 @@ public class ProjektServiceImpl implements ProjektService {
         return serverUrl + getResourcePath(id);
     }
 
-    @Autowired
-    private ProjektRepository projektRepository;
-    @Autowired
-    private ZadanieRepository zadanieRepository;
 
-    public ProjektServiceImpl(ProjektRepository projektRepository, ZadanieRepository zadanieRepo) {
-        this.projektRepository = projektRepository;
-        this.zadanieRepository = zadanieRepo;
-    }
 
     @Override
     public List<Projekt> getProjekty() {

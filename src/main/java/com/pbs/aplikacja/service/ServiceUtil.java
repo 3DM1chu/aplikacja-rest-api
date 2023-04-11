@@ -1,5 +1,6 @@
 package com.pbs.aplikacja.service;
 
+import com.pbs.aplikacja.model.Projekt;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,9 +13,9 @@ import java.net.URI;
 
 public class ServiceUtil {
 
-    public static <T> RestResponsePage<T> getPage(URI uri, RestTemplate restTemplate,
-                                                  ParameterizedTypeReference<RestResponsePage<T>> responseType) {
-        ResponseEntity<RestResponsePage<T>> result = restTemplate.exchange(uri, HttpMethod.GET, null,
+    public static RestResponsePage<Projekt> getPage(URI uri, RestTemplate restTemplate,
+                                                  ParameterizedTypeReference<RestResponsePage<Projekt>> responseType) {
+        ResponseEntity<RestResponsePage<Projekt>> result = restTemplate.exchange(uri, HttpMethod.GET, null,
                 responseType);
         return result.getBody();
     }

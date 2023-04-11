@@ -11,4 +11,6 @@ public interface ProjektService {
     Page<Projekt> getProjekty(Pageable pageable);
     Page<Projekt> searchByNazwa(String nazwa, Pageable pageable);
     List<Projekt> getProjekty();
+
+
 }
