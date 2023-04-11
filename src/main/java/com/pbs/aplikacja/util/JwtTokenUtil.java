@@ -37,6 +37,7 @@ public class JwtTokenUtil {
         return createToken(claims, userDetails.getUsername());
     }
 
+    // TODO Można zmienić na nigdy nie kończące się tokeny wrzucając Integer.MAX_VALUE czy jakoś tak
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))

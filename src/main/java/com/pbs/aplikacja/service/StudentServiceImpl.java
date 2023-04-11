@@ -1,6 +1,5 @@
 package com.pbs.aplikacja.service;
 
-import com.pbs.aplikacja.model.Projekt;
 import com.pbs.aplikacja.model.Student;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,6 +64,8 @@ public class StudentServiceImpl implements StudentService {
         logger.info("REQUEST -> DELETE {}", url);
         restTemplate.delete(url);
     }
+
+    // TODO Zmienić metodę getPage
 
     @Override
     public Page<Student> getStudenci(Pageable pageable) {
