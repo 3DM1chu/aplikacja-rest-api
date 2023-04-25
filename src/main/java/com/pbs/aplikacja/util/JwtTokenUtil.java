@@ -20,7 +20,7 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil {
 
-    private final JwtConfig jwtConfig;
+    private JwtConfig jwtConfig;
 
     public JwtTokenUtil(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;
@@ -28,6 +28,9 @@ public class JwtTokenUtil {
 
     private static final String SECRET_KEY = "secret_key";
 
+    public JwtTokenUtil(){
+        this.jwtConfig = null;
+    }
     public JwtTokenUtil(String secretKey, Long tokenValidity, JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;
     }

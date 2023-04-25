@@ -84,7 +84,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private Page<Student> getPage(URI uri, RestTemplate restTemplate) {
-        return ServiceUtil.getPage(uri, restTemplate,
+        return ServiceUtil.getPageStudent(uri, restTemplate,
                 new ParameterizedTypeReference<RestResponsePage<Student>>() {});
     }
     private String getResourcePath() {

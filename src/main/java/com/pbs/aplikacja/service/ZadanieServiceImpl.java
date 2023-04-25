@@ -50,7 +50,7 @@ public class ZadanieServiceImpl implements ZadanieService {
 
     // TODO Zmienić metodę getPage
     private Page<Zadanie> getPage(URI uri, RestTemplate restTemplate) {
-        return ServiceUtil.getPage(uri, restTemplate, new ParameterizedTypeReference<RestResponsePage<Zadanie>>() {});
+        return ServiceUtil.getPageZadanie(uri, restTemplate, new ParameterizedTypeReference<RestResponsePage<Zadanie>>() {});
     }
 
     @Override

@@ -102,7 +102,7 @@ public class ProjektServiceImpl implements ProjektService {
     }
     // metody pomocnicze
     private Page<Projekt> getPage(URI uri, RestTemplate restTemplate) {
-        return ServiceUtil.getPage(uri, restTemplate,
+        return ServiceUtil.getPageProjekt(uri, restTemplate,
                 new ParameterizedTypeReference<RestResponsePage<Projekt>>() {});
     }
     private String getResourcePath() {
