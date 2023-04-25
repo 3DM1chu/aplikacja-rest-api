@@ -19,6 +19,6 @@ public class SecurityConfig {
     }
     @Bean // zwrócony, natomiast adnotacja @Autowired użyta w innej klasie spowoduje jego wstrzyknięcie
     RestTemplate customRestTemplate(RestTemplateBuilder restTemplateBuilder) {
-        return restTemplateBuilder.basicAuthentication("admin", "admin").build();
+        return restTemplateBuilder.build();//basicAuthentication("admin", "admin").build();
     }
 }
