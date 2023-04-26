@@ -1,6 +1,7 @@
 package com.pbs.aplikacja.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pbs.aplikacja.model.LoginRequest;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

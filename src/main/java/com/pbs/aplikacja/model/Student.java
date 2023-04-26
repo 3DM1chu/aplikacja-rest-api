@@ -20,16 +20,20 @@ public class Student {
     private String email;
     private Boolean isLocal;
 
+    private Role role;
+
     @ManyToMany(mappedBy = "studenci")
     private Set<Projekt> projekty;
 
     public Student() {
+        this.setRole(Role.STUDENT);
     }
 
     public Student(String firstName, String lastName, String indexNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.indexNumber = indexNumber;
+        this.setRole(Role.STUDENT);
     }
 
     public Student(String firstName, String lastName, String indexNumber, String email, Boolean isLocal) {
@@ -38,6 +42,7 @@ public class Student {
         this.indexNumber = indexNumber;
         this.email = email;
         this.isLocal = isLocal;
+        this.setRole(Role.STUDENT);
     }
 
     public Integer getStudentId() {
@@ -94,5 +99,13 @@ public class Student {
 
     public void setProjekty(Set<Projekt> projekty) {
         this.projekty = projekty;
+    }
+
+    public Role getRole(){
+        return this.role;
+    }
+
+    public void setRole(Role role){
+        this.role = role;
     }
 }
